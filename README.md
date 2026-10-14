@@ -1,6 +1,6 @@
 # Plugged: EV Charging Finder
 
-A minimal, reactive EV charging hub finder. It lists the nearest hubs to the user and shows how many spots are free at each one, updating live. A small Express + TypeScript backend serves the data (seeded stub data for now) and streams availability changes to the browser.
+An EV charging hub finder. It lists the nearest hubs to the user and shows how many spots are free at each one, updating live. A small Express + TypeScript backend serves the data (seeded stub data for now) and streams availability changes to the browser.
 
 ## Stack
 
