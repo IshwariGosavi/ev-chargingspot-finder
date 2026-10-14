@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plugged · EV Charging Finder</title>
+    <meta name="description" content="Find nearby EV charging hubs and see how many spots are free." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="min-h-screen bg-stone-50 text-stone-800 antialiased">
+    <div class="mx-auto max-w-2xl px-4 pb-16 pt-8 sm:pt-12">
+      <header>
+        <div class="flex items-center gap-2 text-stone-800">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />
+          </svg>
+          <span class="text-sm font-medium tracking-wide">Plugged</span>
+        </div>
+        <h1 class="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">Charging hubs near you</h1>
+        <p class="mt-1 text-sm text-stone-500">Live free-spot counts, sorted by distance.</p>
+      </header>
+
+      <section class="mt-6 space-y-3" aria-label="Search and filters">
+        <div class="flex gap-2">
+          <label class="relative flex-1">
+            <span class="sr-only">Search hubs</span>
+            <svg viewBox="0 0 24 24" class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+            </svg>
+            <input
+              id="search"
+              type="search"
+              placeholder="Search by name or area"
+              autocomplete="off"
+              class="w-full rounded-xl border border-stone-200 bg-white py-2.5 pl-9 pr-3 text-sm placeholder:text-stone-400 focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-200"
+            />
+          </label>
+          <button
+            id="locate"
+            type="button"
+            class="inline-flex items-center gap-2 rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-50"
+          >
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /><circle cx="12" cy="12" r="7" />
+            </svg>
+            <span class="hidden sm:inline">Use my location</span>
+            <span class="sm:hidden">Locate</span>
+          </button>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <button type="button" data-availability="all" class="chip">All hubs</button>
+          <button type="button" data-availability="available" class="chip">Spots free</button>
+          <span class="mx-1 hidden w-px bg-stone-200 sm:block" aria-hidden="true"></span>
+          <button type="button" data-speed="any" class="chip">Any speed</button>
+          <button type="button" data-speed="fast" class="chip">Fast (50 kW+)</button>
+        </div>
+      </section>
+
+      <div class="mt-6 flex items-center justify-between text-xs text-stone-500">
+        <p id="summary" aria-live="polite"></p>
+        <p class="flex items-center gap-1.5">
+          <span id="live-dot" class="h-1.5 w-1.5 rounded-full bg-stone-400"></span>
+          <span id="updated-label">Updated</span>
+        </p>
+      </div>
+
+      <ul id="hub-list" class="mt-3 space-y-3"></ul>
+
+      <footer class="mt-8 text-center text-xs text-stone-400">
+        <p id="location-label"></p>
+        <p class="mt-1">Demo data · availability is simulated by the server</p>
+      </footer>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

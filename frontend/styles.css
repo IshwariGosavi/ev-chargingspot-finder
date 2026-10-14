@@ -1,0 +1,71 @@
+/* Small additions on top of Tailwind: motion and a few states Tailwind can't express inline. */
+
+html {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+}
+
+.hub-card {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.hub-card:hover {
+  border-color: #d6d3d1;
+  box-shadow: 0 2px 10px rgba(28, 25, 23, 0.05);
+}
+
+/* Progress bar eases when a live update changes the width */
+.bar {
+  transition: width 0.5s ease, background-color 0.3s ease;
+}
+
+/* Gentle fade when the set of cards changes (the class is toggled from app.ts,
+   so quiet live updates don't make the whole list flash) */
+.list-enter .hub-card {
+  animation: fade-in 0.25s ease both;
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(2px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Expand / collapse using grid rows so height animates smoothly */
+.details {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+.details.open {
+  grid-template-rows: 1fr;
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #f5f5f4 25%, #e7e5e4 37%, #f5f5f4 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+/* Soft pulse on the "live" dot */
+.live-dot {
+  animation: pulse-soft 2.4s ease-in-out infinite;
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #a8a29e;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

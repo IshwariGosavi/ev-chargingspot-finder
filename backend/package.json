@@ -1,0 +1,20 @@
+{
+  "name": "ev-finder-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Plugged backend: Express + TypeScript REST API with a live availability stream",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json --watch",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "typescript": "^5.6.0"
+  }
+}
