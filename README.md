@@ -67,7 +67,7 @@ curl -N http://localhost:3000/api/events
 
 ## How it works
 
-- **Nearest first**: the browser sends its location (or a default one until you click "Use my location"); the server computes haversine distances and returns hubs nearest-first. Choosing a new location refetches.
+- **Nearest first**: the browser sends its location (or a default one until you click "Use my location"), the server computes haversine distances and returns hubs nearest-first. Choosing a new location refetches.
 - **Live spots**: the browser opens one `EventSource` connection. Updates patch the in-memory state and the cards re-render without a flash. If the connection drops, the browser reconnects on its own and the next `snapshot` brings every count back up to date. The header dot shows live (green) or reconnecting (grey).
 - **Reactive frontend**: `store.set(patch)` merges state and re-renders. Filters, search, location, loading/error states and live updates all go through it.
 - **Simulation**: `HubStore.startSimulation()` nudges one random hub's free spots every 4 seconds so the UI has something to show.
